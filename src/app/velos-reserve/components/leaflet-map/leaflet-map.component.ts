@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import { MarkerService } from '../../../services/marker.service';
 import {StationsService} from "../../services/stations.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {StationsService} from "../../services/stations.service";
 
 export class LeafletMapComponent implements AfterViewInit{
 
-  constructor(private markerService: MarkerService, private stationsService: StationsService) {
+  constructor(private markerService: MarkerService, private stationsService: StationsService, private router: Router) {
 
   }
 
@@ -34,10 +35,13 @@ export class LeafletMapComponent implements AfterViewInit{
       // data is the array of ApiUser objects
       for (const element of data) {
         const marker = L.marker([element.position.lat, element.position.lng]).addTo(map);
-        marker.bindPopup(`Station: ${element.name}<br>Adresse : ${element.address}<br>Nombre de vélo : ${element.bike_stands}<br><a>Réserver un vélo</a>`).openPopup();
-
+        marker.bindPopup(`Station: ${element.name}<br>Adresse : ${element.address}<br>Nombre de vélo : ${element.bike_stands}<br><button (click)="onAddReservation()">Réserver</button>`).openPopup();
 
       };
     });
+
+  }
+  onAddReservation():void{
+    this.router.navigateByUrl('/reservation')
   }
 }

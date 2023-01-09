@@ -6,12 +6,14 @@ import {StationsService} from "./services/stations.service";
 import { StationListComponent } from './components/station-list/station-list.component';
 import {StationResolver} from "./resolvers/station.resolver";
 import { LeafletMapComponent } from './components/leaflet-map/leaflet-map.component';
+import { FormReservationComponent } from './components/form-reservation/form-reservation.component';
 
 
 @NgModule({
   declarations: [
     StationListComponent,
-    LeafletMapComponent
+    LeafletMapComponent,
+    FormReservationComponent
   ],
   imports: [
     CommonModule,
